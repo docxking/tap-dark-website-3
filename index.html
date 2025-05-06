@@ -1,65 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Slap Back</title>
-  <style>
-    body {
-      background-color: #0e0e0e;
-      color: #f1f1f1;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
-    input, button {
-      padding: 1rem;
-      margin: 1rem;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      border: none;
-      background: #222;
-      color: #fff;
-    }
-    input:focus, button:hover {
-      outline: 2px solid #00ffcc;
-    }
-    button {
-      background: #00cc99;
-      cursor: pointer;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 2rem;
-      max-height: 300px;
-      overflow-y: auto;
-      width: 100%;
-      max-width: 400px;
-    }
-    li {
-      background: #1a1a1a;
-      margin: 0.5rem 0;
-      padding: 0.75rem;
-      border-radius: 6px;
-      text-align: left;
-    }
-    h1, h2 {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+  <title>$TAP – The Vengeance Coin</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>SLAP BACK</h1>
-  <input id="nickname" type="text" placeholder="Enter your nickname" />
-  <button id="tapBtn">SLAP!</button>
-  <h2>Total Slaps: <span id="totalSlaps">0</span></h2>
-  <ul id="slapList"></ul>
+  <div class="overlay">
+    <header>
+      <h1>$TAP</h1>
+      <p>The Vengeance of the Scammed</p>
+    </header>
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <main>
+      <section class="intro">
+        <h2>They laughed when we bought the top.</h2>
+        <p>They mocked us when we held the rugs. But we never forgot.</p>
+      </section>
+
+      <section class="vengeance">
+        <h2>We Slap Back</h2>
+        <p>Enter your name to join the Slap Army:</p>
+        <input type="text" id="nicknameInput" placeholder="Your name..." />
+        <button id="startBtn">Join</button>
+
+        <div id="slapSection" class="hidden">
+          <button id="slapButton">SLAP BACK</button>
+          <p id="slapCount">0 SLAPS DELIVERED</p>
+          <div id="leaderboard">
+            <h3>Live Slaps</h3>
+            <ul id="slapList"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 $TAP. Hawk Tuah That Thing Back to the Moon.</p>
+    </footer>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
