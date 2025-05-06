@@ -37,7 +37,7 @@ slapBtn.addEventListener('click', () => {
   entry.textContent = `${nickname} slapped back!`;
   slapList.prepend(entry);
 
-  // Animação do GIF
+  // Animação do GIF (6s total com transição suave)
   gif.style.display = 'none';
   const originalSrc = gif.src.split('?')[0];
   setTimeout(() => {
@@ -47,12 +47,12 @@ slapBtn.addEventListener('click', () => {
   }, 50);
 
   setTimeout(() => {
-    gif.style.opacity = '0';
-  }, 700);
+    gif.style.opacity = '0'; // Suavemente desaparece
+  }, 5700);
 
   setTimeout(() => {
-    gif.style.display = 'none';
-  }, 1000);
+    gif.style.display = 'none'; // Some do layout após sumir
+  }, 6000);
 
   // Envia para o Firebase
   const slapData = {
