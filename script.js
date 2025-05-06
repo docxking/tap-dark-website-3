@@ -57,3 +57,20 @@ function showLeaderboard() {
   entry.textContent = `${nickname} joined the slap army.`;
   slapList.prepend(entry);
 }
+
+const slapButton = document.getElementById('slapButton');
+const gif = document.getElementById('hawkTuahGif');
+
+slapButton.addEventListener('click', () => {
+  gif.style.display = 'block';
+  gif.style.opacity = '1';
+  gif.src = gif.src; // Reinicia o GIF
+
+  setTimeout(() => {
+    gif.style.opacity = '0';
+  }, 700); // Inicia o desaparecimento após 0.7s
+
+  setTimeout(() => {
+    gif.style.display = 'none';
+  }, 1000); // Remove o GIF do layout após 1s
+});
