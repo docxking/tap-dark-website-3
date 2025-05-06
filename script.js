@@ -27,6 +27,26 @@ slapBtn.addEventListener('click', () => {
   const entry = document.createElement('li');
   entry.textContent = `${nickname} slapped back!`;
   slapList.prepend(entry);
+
+  // Envia para o Firebase
+  const slapData = {
+    nickname: nickname,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  };
+
+  firebase.database().ref('slaps').push(slapData)
+    .then(() => console.log("Slap registrado no Firebase"))
+    .catch((error) => console.error("Erro ao registrar slap:", error));
+});
+('click', () => {
+  totalSlaps++;
+  localStorage.setItem('totalSlaps', totalSlaps);
+  slapCount.textContent = `${totalSlaps} SLAPS DELIVERED`;
+
+  const entry = document.createElement('li');
+  entry.textContent = `${nickname} slapped back!`;
+  slapList.prepend(entry);
 });
 
 function updateSlapCount() {
