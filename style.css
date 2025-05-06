@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: 'Courier New', Courier, monospace;
@@ -123,15 +122,17 @@ button:hover {
   100% { transform: scale(1); }
 }
 
+/* GIF centralizado e animado */
 #hawkTuahGif {
   position: fixed;
-  bottom: 10%;
-  right: 5%;
-  width: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
   display: none;
   z-index: 9999;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
