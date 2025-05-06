@@ -122,3 +122,16 @@ button:hover {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+#hawkTuahGif {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  width: 200px;
+  display: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+}
