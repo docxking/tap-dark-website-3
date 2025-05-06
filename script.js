@@ -1,13 +1,15 @@
-
 let totalSlaps = localStorage.getItem('totalSlaps') || 0;
 let nickname = '';
+
 const nicknameInput = document.getElementById('nicknameInput');
 const startBtn = document.getElementById('startBtn');
 const slapBtn = document.getElementById('slapButton');
 const slapCount = document.getElementById('slapCount');
 const slapSection = document.getElementById('slapSection');
 const slapList = document.getElementById('slapList');
+const gif = document.getElementById('hawkTuahGif');
 
+// Início do jogo
 startBtn.addEventListener('click', () => {
   nickname = nicknameInput.value.trim();
   if (nickname.length > 0) {
@@ -16,17 +18,41 @@ startBtn.addEventListener('click', () => {
     nicknameInput.disabled = true;
     updateSlapCount();
     showLeaderboard();
+  } else {
+    alert('Por favor, insira um nickname!');
   }
 });
 
+// Clique no botão de slap
 slapBtn.addEventListener('click', () => {
+  if (gif.style.display === 'block') return; // Evita múltiplos cliques enquanto o GIF está visível
+
+  // Atualiza contagem local
   totalSlaps++;
   localStorage.setItem('totalSlaps', totalSlaps);
   slapCount.textContent = `${totalSlaps} SLAPS DELIVERED`;
 
+  // Adiciona entrada local na lista
   const entry = document.createElement('li');
   entry.textContent = `${nickname} slapped back!`;
   slapList.prepend(entry);
+
+  // Animação do GIF
+  gif.style.display = 'none';
+  const originalSrc = gif.src.split('?')[0];
+  setTimeout(() => {
+    gif.src = `${originalSrc}?t=${Date.now()}`;
+    gif.style.display = 'block';
+    gif.style.opacity = '1';
+  }, 50);
+
+  setTimeout(() => {
+    gif.style.opacity = '0';
+  }, 700);
+
+  setTimeout(() => {
+    gif.style.display = 'none';
+  }, 1000);
 
   // Envia para o Firebase
   const slapData = {
@@ -40,6 +66,7 @@ slapBtn.addEventListener('click', () => {
     .catch((error) => console.error("Erro ao registrar slap:", error));
 });
 
+// Atualizações em tempo real da slap list
 firebase.database().ref('slaps').limitToLast(10).on('child_added', (snapshot) => {
   const data = snapshot.val();
   const li = document.createElement('li');
@@ -47,30 +74,14 @@ firebase.database().ref('slaps').limitToLast(10).on('child_added', (snapshot) =>
   slapList.prepend(li);
 });
 
-
+// Atualiza contagem na tela
 function updateSlapCount() {
   slapCount.textContent = `${totalSlaps} SLAPS DELIVERED`;
 }
 
+// Mostra entrada no leaderboard
 function showLeaderboard() {
   const entry = document.createElement('li');
   entry.textContent = `${nickname} joined the slap army.`;
   slapList.prepend(entry);
 }
-
-const slapButton = document.getElementById('slapButton');
-const gif = document.getElementById('hawkTuahGif');
-
-slapButton.addEventListener('click', () => {
-  gif.style.display = 'block';
-  gif.style.opacity = '1';
-  gif.src = gif.src; // Reinicia o GIF
-
-  setTimeout(() => {
-    gif.style.opacity = '0';
-  }, 700); // Inicia o desaparecimento após 0.7s
-
-  setTimeout(() => {
-    gif.style.display = 'none';
-  }, 1000); // Remove o GIF do layout após 1s
-});
