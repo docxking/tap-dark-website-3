@@ -27,7 +27,8 @@
         <button id="startBtn">Join</button>
 
         <div id="slapSection" class="hidden">
-          <button id="slapButton">SLAP BACK</button><img id="hawkTuahGif" src="https://media.tenor.com/zJHCC1NLk58AAAAC/hawk-tuah-girl-hawk-tuah.gif" alt="Hawk Tuah Slap" />
+          <button id="slapButton">SLAP BACK</button>
+          <img id="hawkTuahGif" src="https://media.tenor.com/zJHCC1NLk58AAAAC/hawk-tuah-girl-hawk-tuah.gif" alt="Hawk Tuah Slap" />
           <p id="slapCount">0 SLAPS DELIVERED</p>
           <div id="leaderboard">
             <h3>Live Slaps</h3>
@@ -62,5 +63,27 @@
 </script>
 
   <script src="script.js"></script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const slapButton = document.getElementById('slapButton');
+  const gif = document.getElementById('hawkTuahGif');
+
+  slapButton.addEventListener('click', () => {
+    gif.style.display = 'block';
+    gif.style.opacity = '1';
+    gif.src = gif.src;
+
+    setTimeout(() => {
+      gif.style.opacity = '0';
+    }, 700);
+
+    setTimeout(() => {
+      gif.style.display = 'none';
+    }, 1000);
+  });
+});
+</script>
+  
 </body>
 </html>
