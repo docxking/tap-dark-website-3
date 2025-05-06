@@ -39,6 +39,15 @@ slapBtn.addEventListener('click', () => {
     .then(() => console.log("Slap registrado no Firebase"))
     .catch((error) => console.error("Erro ao registrar slap:", error));
 });
+const firebaseConfig = {
+  apiKey: "AIzaSyDA0fbgQb_OpY0WdlfigEs65E1hS1l2028",
+  authDomain: "slap-b9b8a.firebaseapp.com",
+  databaseURL: "https://slap-b9b8a-default-rtdb.firebaseio.com",
+  projectId: "slap-b9b8a",
+  storageBucket: "slap-b9b8a.firebasestorage.app",
+  messagingSenderId: "139059965526",
+  appId: "1:139059965526:web:07d34bc67892428081d5f7"
+};
 ('click', () => {
   totalSlaps++;
   localStorage.setItem('totalSlaps', totalSlaps);
