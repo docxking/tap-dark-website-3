@@ -58,3 +58,9 @@ function showLeaderboard() {
   entry.textContent = `${nickname} joined the slap army.`;
   slapList.prepend(entry);
 }
+firebase.database().ref('slaps').limitToLast(10).on('child_added', (snapshot) => {
+  const data = snapshot.val();
+  const li = document.createElement('li');
+  li.textContent = `${data.nickname} slapped back at ${new Date(data.timestamp).toLocaleTimeString()}`;
+  slapList.prepend(li);
+});
